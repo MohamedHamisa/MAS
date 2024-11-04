@@ -1,8 +1,8 @@
 
-
 Customer Churn Prediction
 Overview
-This project aims to predict customer churn using machine learning and provide actionable insights to enhance customer retention strategies. The model utilizes a dataset containing customer demographics, account information, and service usage patterns to identify customers at risk of churning. The solution is accessible through an interactive Power BI dashboard and a deployable API, both designed to be integrated into web and mobile applications.
+This project aims to predict customer churn using machine learning and provide actionable insights for customer retention strategies.
+Our model uses customer demographics, account information, and service usage patterns to identify customers at risk of churning. The solution includes an interactive Power BI dashboard and a deployable API compatible with web and mobile applications.
 
 Table of Contents
 Project Overview
@@ -14,14 +14,16 @@ Model Training
 Dashboard and API
 Contributors
 Project Overview
-Customer churn can significantly impact a business's revenue and customer satisfaction levels. This project addresses this challenge by developing a predictive model to identify potential churn risks, enabling companies to implement proactive retention measures.
+Customer churn can significantly impact a business’s revenue and customer satisfaction. This project provides a predictive model to help businesses identify customers at risk of churning, enabling proactive retention strategies.
 
 Features
-Data-Driven Insights: The model evaluates key factors contributing to churn, such as contract type, tenure, and support services.
-Power BI Dashboard: An interactive dashboard visualizes churn drivers and trends, providing data insights that are accessible and actionable.
-API Deployment: A Flask API allows for real-time churn predictions, making integration into web and mobile applications straightforward.
+Data-Driven Insights: The model evaluates factors contributing to churn, such as contract type, tenure, and support services.
+Power BI Dashboard: An interactive dashboard to visualize churn drivers and trends, making data actionable.
+API Deployment: A Flask API enables real-time churn predictions, easily integrated into web and mobile applications.
 Data
-We used the Telco Customer Churn dataset, which contains:
+Dataset
+We used the Telco Customer Churn dataset, containing information on:
+
 Customer Demographics: gender, senior citizen status, partner, dependents.
 Service Usage: phone service, multiple lines, internet service, online security, tech support.
 Account Information: contract type, payment method, monthly charges, and tenure.
@@ -37,23 +39,19 @@ bash
 Copy code
 pip install -r requirements.txt
 Usage
-Data Preprocessing and Model Training
-Run the notebook churn_model_training.ipynb to explore data preprocessing, feature engineering, and model selection steps.
-A pre-trained model (customer_churn_model.pkl) is available for immediate use.
-Power BI Dashboard
-Our Power BI dashboard provides an interactive view of customer churn data and enables users to filter and analyze churn drivers.
-
-Access the dashboard file in the /dashboard directory.
-Open it in Power BI Desktop for further customization and use.
-API Deployment
-Our API, built with Flask, enables churn predictions on new customer data.
-
+1. Data Preprocessing and Model Training
+Notebook: Run churn_model_training.ipynb to see the steps taken for data preprocessing, feature engineering, and model selection.
+Pre-trained Model: Use the pre-trained model (customer_churn_model.pkl) for immediate predictions.
+2. Power BI Dashboard
+Dashboard File: Access the file in /dashboard directory.
+Power BI Desktop: Open it for a detailed, interactive view of customer churn data.
+3. API Deployment
 Run the API locally:
 bash
 Copy code
 python app.py
 API Endpoint: /predict_churn
-Example JSON Input:
+Sample Input:
 json
 Copy code
 {
@@ -67,19 +65,17 @@ Copy code
     "cat__InternetService_Fiber": 1
 }
 Mobile Accessibility
-The API is compatible with mobile devices, allowing real-time access to churn insights on the go.
+The API is optimized for mobile compatibility, enabling real-time access to churn insights on mobile devices.
 
 Model Training
-The model was trained on a subset of customer features, focusing on accuracy and interpretability. Various models were tested, and the final model was selected based on optimal performance across multiple metrics.
+The model was trained using a subset of customer features, prioritizing accuracy and interpretability.
 
 Model Details
-Preprocessing: Categorical variables were encoded, and numerical features were scaled.
-Algorithm: The model was chosen based on its precision, recall, and F1-score.
+Preprocessing: Categorical variables were encoded; numerical features were scaled.
+Algorithm: Model selection was based on precision, recall, and F1-score metrics.
 Dashboard and API
-Our solution includes:
-
-Power BI Dashboard: Visualizes key churn factors in an intuitive way.
-Flask API: Provides real-time predictions via a RESTful API, accessible on web and mobile.
+Power BI Dashboard: Visualizes key churn factors, making data understandable and actionable.
+Flask API: Real-time predictions through a RESTful API, accessible on web and mobile.
 Contributors
 Mohamed Hamisa - Machine Learning Engineer
 Ahmed Khalid - Data Engineer
