@@ -1,5 +1,5 @@
 
-**Customer Churn Prediction
+**Customer Churn Prediction**
 Overview
 This project aims to predict customer churn using machine learning and provide actionable insights for customer retention strategies.
 Our model uses customer demographics, account information, and service usage patterns to identify customers at risk of churning. The solution includes an interactive Power BI dashboard and a deployable API compatible with web and mobile applications.
