@@ -92,7 +92,7 @@ Algorithm: Model selection based on precision, recall, and F1-score metrics.
 📈 DASHBOARD AND API
 Power BI Dashboard: Easily interpretable visuals of key churn factors.
 Flask API: Real-time predictions through a RESTful API, accessible on web and mobile.
-👥 CONTRIBUTORS
+#👥 **CONTRIBUTORS**
 Mohamed Hamisa - Machine Learning Engineer
 Ahmed Khalid - Data Engineer
 Shrouk Sobhy - Machine Learning Engineer
