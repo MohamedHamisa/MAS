@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAS</title>
+    <style>
+        /* Background image */
+        body {
+            background-image: url('https://cdn.radiall.com/media/contentmanager/content/insights/iStock-1291343894.jpg');
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        /* Container for form and result */
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            color: #ffd700;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-shadow: 2px 2px 5px #000;
+            margin-bottom: 20px;
+        }
+        label, input, select, button {
+            font-size: 1em;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #ffd700;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ffc107;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>MAS</h1>
+        <form id="churnForm">
+            <label for="tenure">Tenure:</label>
+            <input type="number" id="tenure" name="num__tenure" required>
+
+            <label for="monthlyCharges">Monthly Charges:</label>
+            <input type="number" id="monthlyCharges" name="num__MonthlyCharges" required>
+
+            <label for="paymentMethod">Payment Method:</label>
+            <select id="paymentMethod" name="cat__PaymentMethod" required>
+                <option value="Electronic check">Electronic check</option>
+                <option value="Mailed check">Mailed check</option>
+                <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                <option value="Credit card (automatic)">Credit card (automatic)</option>
+            </select>
+
+            <label for="contract">Two-Year Contract:</label>
+            <select id="contract" name="cat__Contract_TwoYear" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="onlineSecurity">Online Security Enabled:</label>
+            <select id="onlineSecurity" name="cat__OnlineSecurity_Yes" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="techSupport">Tech Support Enabled:</label>
+            <select id="techSupport" name="cat__TechSupport_Yes" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="multipleLines">Multiple Lines Enabled:</label>
+            <select id="multipleLines" name="cat__MultipleLines_Yes" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label for="internetService">Internet Service:</label>
+            <select id="internetService" name="cat__InternetService_Yes" required>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <button type="button" onclick="makePrediction()">Predict Churn</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const apiUrl = 'https://f975-34-125-11-88.ngrok-free.app/predict_churn';
+
+        async function makePrediction() {
+            // Gather form data
+            const tenure = parseInt(document.getElementById("tenure").value);
+            const monthlyCharges = parseFloat(document.getElementById("monthlyCharges").value);
+
+            // Check if any numerical input is 0, which triggers a churn prediction
+            if (tenure === 0 || monthlyCharges === 0) {
+                document.getElementById("result").innerText = "Prediction: Churn";
+                return;
+            }
+
+            const formData = {
+                num__tenure: tenure,
+                num__MonthlyCharges: monthlyCharges,
+                cat__PaymentMethod: document.getElementById("paymentMethod").value,
+                cat__Contract_TwoYear: parseInt(document.getElementById("contract").value),
+                cat__OnlineSecurity_Yes: parseInt(document.getElementById("onlineSecurity").value),
+                cat__TechSupport_Yes: parseInt(document.getElementById("techSupport").value),
+                cat__MultipleLines_Yes: parseInt(document.getElementById("multipleLines").value),
+                cat__InternetService_Yes: parseInt(document.getElementById("internetService").value), // New feature
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                document.getElementById("result").innerText = result.churn_prediction
+                    ? `Prediction: ${result.churn_prediction}`
+                    : `Error: ${result.error}`;
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById("result").innerText = "Error in making prediction.";
+            }
+        }
+    </script>
+</body>
+</html>
